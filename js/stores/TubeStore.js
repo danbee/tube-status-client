@@ -6,6 +6,7 @@ var assign = require('object-assign');
 var qwest = require('qwest');
 
 var CHANGE_EVENT = 'change';
+var LOADING_EVENT = 'loading';
 
 var _lines = [];
 
@@ -22,8 +23,16 @@ var TubeStore = assign({}, EventEmitter.prototype, {
     return _lines;
   },
 
+  emitLoading: function() {
+    this.emit(LOADING_EVENT);
+  },
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
+  },
+
+  addLoadingListener: function(callback) {
+    this.on(LOADING_EVENT, callback);
   },
 
   addChangeListener: function(callback) {
@@ -39,6 +48,7 @@ AppDispatcher.register(function(action) {
 
   switch(action.actionType) {
     case TubeConstants.REFRESH_LINES:
+      TubeStore.emitLoading();
       refreshLines(function() {
         TubeStore.emitChange();
       });
