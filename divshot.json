@@ -1,0 +1,13 @@
+{
+  "name": "tube-status",
+  "exclude": ["js/actions",
+              "js/components",
+              "js/constants",
+              "js/dispatcher",
+              "js/stores",
+              "js/app.js",
+              "node_modules",
+              ".git",
+              "package.json",
+              "README.md"]
+}
