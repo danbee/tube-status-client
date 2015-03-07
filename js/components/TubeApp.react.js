@@ -11,8 +11,8 @@ var TubeApp = React.createClass({
   },
 
   componentDidMount: function() {
-    TubeStore.addChangeListener(this._onChange);
     TubeStore.addLoadingListener(this._onLoading);
+    TubeStore.addChangeListener(this._onChange);
   },
 
   render: function() {
