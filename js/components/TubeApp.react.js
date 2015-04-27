@@ -21,10 +21,23 @@ var TubeApp = React.createClass({
         return line.status == 'good service' ? 'status good-service' : 'status'
       }
 
+      var messages = function(messages) {
+        if (messages.length > 0) {
+          return (
+            <div className="messages">
+              {messages}
+            </div>
+          )
+        }
+      }
+
       return (
         <li key={line.id} className={line.id}>
-          {line.name}
-          <span className={status()}>{line.status}</span>
+          <header>
+            {line.name}
+            <span className={status()}>{line.status}</span>
+          </header>
+          {messages(line.messages)}
         </li>
       )
     })
@@ -33,7 +46,7 @@ var TubeApp = React.createClass({
 
     return (
       <div>
-        <header>
+        <header className="main">
           <a href="" onClick={this.refresh} className={refresh}><img src="/img/refresh.svg" alt="refresh" /></a>
         </header>
         <ul className="lines">
