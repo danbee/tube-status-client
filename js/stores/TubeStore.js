@@ -13,7 +13,6 @@ var _lines = [];
 var refreshLines = function(callback) {
   qwest.get('http://tube-status-server.herokuapp.com/now.json', {}, { timeout: 30000 }).then(function(data) {
     _lines = data;
-    console.log(_lines);
     callback();
   })
 }
